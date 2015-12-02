@@ -1,0 +1,109 @@
+body, body div {
+background-color: #e6e6e6;
+margin-left: 0px;
+margin-right: 0px;
+}
+
+body #feed {
+	max-height: 300px;
+	overflow: scroll;
+}
+
+button {
+margin-top: 20px;
+width: 120px;
+height: 40px;
+border-radius: 20px;
+background-color: #f5f8fa;
+}
+
+div{
+	color: black;
+	background-color: #f5f8fa;
+}
+
+
+div #username{
+	font-weight: bold;
+}
+
+div #msg{
+}
+
+#feed div {
+	background-color: #cce5ff;
+}
+
+h1{
+	color: #e5f2ff;
+	background-color: #3366ff;
+	height:65px;
+	padding: 20px 0 0 20px;
+}
+
+#userTimeline {
+	display:none;
+margin-top:20px;
+}
+
+
+
+
+
+
+
+/* basic grid framework */
+.row
+{
+width:100%;
+display: flex;
+}
+
+.col-1
+{
+width: 8.33%;
+}
+.col-2
+{
+width: 16.66%;
+}
+.col-3
+{
+width: 25%;
+}
+.col-4
+{
+width: 33.33%;
+}
+.col-5
+{
+width: 41.66%;
+}
+.col-6
+{
+width: 50%;
+}
+.col-7
+{
+width: 58.33%;
+}
+.col-8
+{
+width: 66.66%;
+}
+.col-9
+{
+width: 75%;
+}
+.col-10
+{
+width: 83.33%;
+}
+.col-11
+{
+width: 91.66%;
+}
+.col-12
+{
+width: 100%;
+}

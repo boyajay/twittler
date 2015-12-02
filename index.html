@@ -3,24 +3,88 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
+  
+  <h1>TWITTLER</h1>
+  <h3> Your Social Feed:</h3>
+  <div id="feed" class="row"><div id="username" class="col-2"></div><div id="msg" class="col-6"></div><div id="dates" class="col-4"></div></div>
+  <button>Click to Refresh</button>
+  <div id="userTimeline">TESTING</div>
+
+
     <script>
-
       $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+      
+      var $username = $('#username'),  $msg = $('#msg'), $dates = $('#dates'), $userTimeline = $('#userTimeline');
+         
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
+  
+      var refresh = function (){
+      
+          $username.html(''), $msg.html(''), $dates.html('');
+          var index = streams.home.length - 1;
+            while(index >= 0){
+
+
+              var tweet = streams.home[index];
+              var $tweetName = $('<div></div>');
+              $tweetName.text(tweet.user);    
+              $tweetName.appendTo($username);
+           
+              var $msgtext = $('<div></div>');
+              $msgtext.text(': ' + tweet.message);    
+              $msgtext.appendTo($msg);
+  //              var today = new Date();
+  //            var shortDate = Date().toString().split("2015")[0] + today.getFullYear();
+              if (!tweet.date){
+                tweet.date = Date();
+              };
+
+              var $datetext = $('<div></div>');
+              $datetext.text('--- ' + tweet.date);    
+              $datetext.appendTo($dates);
+            index -= 1;
+          }
+         $('button').on('click', refresh);
+       
+      };
+
+
+
+        $('#username').on('click', 'div', 
+        showTimeline);
+      
+
+        function showTimeline (){
+          $userTimeline.text("SHOWING ALL MESSAGES FOR USER: @" + $(this).text());
+          
+          $('#userTimeline').slideDown();
+
+          var tweet = streams.users[$(this).text()];
+          var index = tweet.length - 1;
+            while(index >= 0){
+              //var today = new Date();
+              //var shortDate = Date().toString().split("2015")[0] + today.getFullYear();
+              var $msgtext = $('<div></div>');
+              $msgtext.text(tweet[index].message);    
+              $msgtext.appendTo($userTimeline);
+
           index -= 1;
+          }
+
         }
 
-      });
+
+      refresh();
+
+       });
+
+
+
+
+
 
     </script>
   </body>
