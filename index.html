@@ -20,7 +20,7 @@
       var $username = $('#username'),  $msg = $('#msg'), $dates = $('#dates'), $userTimeline = $('#userTimeline');
          
 
-  
+      
       var refresh = function (){
       
           $username.html(''), $msg.html(''), $dates.html('');
@@ -68,7 +68,21 @@
               //var today = new Date();
               //var shortDate = Date().toString().split("2015")[0] + today.getFullYear();
               var $msgtext = $('<div></div>');
-              $msgtext.text(tweet[index].message);    
+              var timestamp = "not found";
+              var feedIndex = streams.home.length - 1;
+            
+            while(feedIndex >= 0){
+              var feedTweet = streams.home[feedIndex]; 
+               if  (feedTweet.message === tweet[index].message) {
+                if (!feedTweet.date){
+                  feedTweet.date = Date();
+                };
+                  timestamp = feedTweet.date;
+                  break;
+                 }
+                 feedIndex -= 1;
+              }
+              $msgtext.text(tweet[index].message + " ----- " + timestamp);    
               $msgtext.appendTo($userTimeline);
 
           index -= 1;
