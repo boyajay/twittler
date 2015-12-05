@@ -2,6 +2,7 @@ body, body div {
 background-color: #e6e6e6;
 margin-left: 0px;
 margin-right: 0px;
+font-family: 'Fira Sans', sans-serif;
 }
 
 body #feed {
@@ -12,11 +13,13 @@ body #feed {
 }
 
 button {
-margin-top: 20px;
-width: 120px;
+margin-top: 15px;
+width: 150px;
 height: 40px;
-border-radius: 20px;
-background-color: #f5f8fa;
+border-radius: 15px;
+background-color: #ffffff;
+font-weight: bold;
+font-size: .75em;
 }
 
 div{
@@ -29,23 +32,42 @@ div #username{
 	font-weight: bold;
 }
 
-div #msg{
-}
-
 #feed div {
 	background-color: #cce5ff;
 }
 
 h1{
 	color: #e5f2ff;
-	background-color: #3366ff;
+	background-color: #0E3993;
 	height:65px;
-	padding: 20px 0 0 20px;
+	font-family: 'Indie Flower', cursive;
+	font-size: 3em;
+	padding: 20px 0 15px 20px;
+}
+
+h3{
+	margin: -10px 0 10px 0;
+	font-size: 1.6em;
+}
+
+h3, #tl-heading {
+	color: #3333cc;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+#tl-heading {
+	padding-top: 30px;
+}
+
+#tl-heading, #userTimeline{
+	text-align: justify;
+	margin: 0 auto;
+	width: 50em;
 }
 
 #userTimeline {
 	display:none;
-margin-top:20px;
+	margin-top: 5px;
 }
 
 

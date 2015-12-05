@@ -4,14 +4,18 @@
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Indie+Flower|Josefin+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Indie+Flower|Josefin+Sans|Fira+Sans' rel='stylesheet' type='text/css'>
   </head>
   <body>
   
-  <h1>TWITTLER</h1>
+  <h1>T W I T T L E R</h1>
   <h3> Your Social Feed:</h3>
   <div id="feed" class="row"><div id="username" class="col-2"></div><div id="msg" class="col-6"></div><div id="dates" class="col-4"></div></div>
   <button>Click to Refresh</button>
-  <div id="userTimeline">TESTING</div>
+  <div id="tl-heading"></div>
+  <div id="userTimeline"></div>
 
 
     <script>
@@ -58,7 +62,8 @@
       
 
         function showTimeline (){
-          $userTimeline.text("SHOWING ALL MESSAGES FOR USER: @" + $(this).text());
+          $('#tl-heading').text("SHOWING ALL MESSAGES FOR USER: @" + $(this).text());
+          $userTimeline.text('');
           
           $('#userTimeline').slideDown();
 
