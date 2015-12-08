@@ -17,94 +17,53 @@
   <div id="tl-heading"></div>
   <div id="userTimeline"></div>
 
-
     <script>
-      $(document).ready(function(){
-      
-      var $username = $('#username'),  $msg = $('#msg'), $dates = $('#dates'), $userTimeline = $('#userTimeline');
-         
+      $(document).ready(function(){  
+        var $username = $('#username'),  $msg = $('#msg'), $dates = $('#dates'), $userTimeline = $('#userTimeline');
+        
+        $('button').on('click', refresh);
+        $('#username').on('click', 'div', showTimeline);
+              
+        function refresh (){      
+            $username.html(''), $msg.html(''), $dates.html('');
+            var index = streams.home.length - 1;
+              while(index >= 0){
+                var tweet = streams.home[index];
 
-      
-      var refresh = function (){
-      
-          $username.html(''), $msg.html(''), $dates.html('');
-          var index = streams.home.length - 1;
+                var $tweetName = $('<div></div>');
+                $tweetName.text(tweet.user);    
+                $tweetName.appendTo($username);
+             
+                var $msgtext = $('<div></div>');
+                $msgtext.text(': ' + tweet.message);    
+                $msgtext.appendTo($msg);
+
+                var $datetext = $('<div></div>');
+                $datetext.text('--- ' + tweet.created_at);    
+                $datetext.appendTo($dates);
+              index -= 1;
+            }
+          };      
+
+          function showTimeline (){
+            $('#tl-heading').text("SHOWING ALL MESSAGES FOR USER: @" + $(this).text());
+            $userTimeline.text('');
+            
+            $('#userTimeline').slideDown();
+
+            var tweet = streams.users[$(this).text()];
+            var index = tweet.length - 1;
             while(index >= 0){
-
-
-              var tweet = streams.home[index];
-              var $tweetName = $('<div></div>');
-              $tweetName.text(tweet.user);    
-              $tweetName.appendTo($username);
-           
-              var $msgtext = $('<div></div>');
-              $msgtext.text(': ' + tweet.message);    
-              $msgtext.appendTo($msg);
-  //              var today = new Date();
-  //            var shortDate = Date().toString().split("2015")[0] + today.getFullYear();
-              if (!tweet.date){
-                tweet.date = Date();
-              };
-
-              var $datetext = $('<div></div>');
-              $datetext.text('--- ' + tweet.date);    
-              $datetext.appendTo($dates);
-            index -= 1;
-          }
-         $('button').on('click', refresh);
-       
-      };
-
-
-
-        $('#username').on('click', 'div', 
-        showTimeline);
-      
-
-        function showTimeline (){
-          $('#tl-heading').text("SHOWING ALL MESSAGES FOR USER: @" + $(this).text());
-          $userTimeline.text('');
-          
-          $('#userTimeline').slideDown();
-
-          var tweet = streams.users[$(this).text()];
-          var index = tweet.length - 1;
-            while(index >= 0){
-              //var today = new Date();
-              //var shortDate = Date().toString().split("2015")[0] + today.getFullYear();
               var $msgtext = $('<div></div>');
               var timestamp = "not found";
               var feedIndex = streams.home.length - 1;
-            
-            while(feedIndex >= 0){
-              var feedTweet = streams.home[feedIndex]; 
-               if  (feedTweet.message === tweet[index].message) {
-                if (!feedTweet.date){
-                  feedTweet.date = Date();
-                };
-                  timestamp = feedTweet.date;
-                  break;
-                 }
-                 feedIndex -= 1;
-              }
-              $msgtext.text(tweet[index].message + " ----- " + timestamp);    
-              $msgtext.appendTo($userTimeline);
-
-          index -= 1;
+              $msgtext.text(tweet[index].message + " ----- " + tweet[index].created_at);    
+              $msgtext.appendTo($userTimeline);                
+              index -= 1;
+            }
           }
-
-        }
-
-
-      refresh();
-
+        refresh();
        });
-
-
-
-
-
-
     </script>
   </body>
 </html>
