@@ -58,13 +58,15 @@
             var tweetle = $('#textField').val();
             $('#textField').val('');
             console.log(tweetle);
-            var you = {
-              user: "you",
-              message: tweetle
-            };
-            streams.home.push(you);
-            $you.push({message: tweetle});
-            refresh();
+            if (tweetle) {
+              var you = {
+                user: "you",
+                message: tweetle
+              };
+              streams.home.push(you);
+              $you.push({message: tweetle});
+              refresh();
+            }
           }    
 
           function showTimeline (){
